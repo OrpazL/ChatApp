@@ -3,6 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const history = require('connect-history-api-fallback');
 const app = express();
 
 // ROUTES IMPORT
@@ -25,6 +26,9 @@ app.use(session({
     }
 }));
 app.use(routes);
+
+app.use(history());
+app.use(express.static('build'));
 
 // SOCKETS INIT
 const socketService = require('./services/socket.service');
