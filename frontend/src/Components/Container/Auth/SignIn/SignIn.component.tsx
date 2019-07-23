@@ -5,7 +5,7 @@ import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { IReducers } from '../../../../index';
 import { withDialog } from '../../../UI/Dialog/WithDialog.component';
 import MaterialUIForm from 'react-material-ui-form'
-import { TextField, } from '@material-ui/core';
+import { TextField,  Button } from '@material-ui/core';
 import classes from './SignIn.module.scss';
 import { FormControl } from '../../../../Modals/Interfaces/Form.interface';
 import { setFormControl, setConfig } from '../../../Form/Form';
@@ -33,8 +33,20 @@ const USERNAME = 'Username'
 const PASSWORD = 'Password'
 
 const SignIn: React.SFC<SignInProps> = (props) => {
-    const onChange = (e: string) => {
-        debugger
+    React.useEffect(() => {
+        const x = {
+            y: 55
+        }
+        console.table(x)
+
+    }, [])
+
+    const onChange = (e: any) => {
+        const value = e.target.value;
+        const name = e.target.name;
+        const temp = { ...state }
+        temp.form[name as keyof ISignInForm].value = value;
+        setState(temp);
     }
 
     const initialState: SignInState = {
@@ -52,6 +64,7 @@ const SignIn: React.SFC<SignInProps> = (props) => {
         }
         return (
             <TextField
+                key={control.label}
                 className={classesArr.join(' ')}
                 inputProps={control.config}
                 value={control.value}
@@ -61,9 +74,14 @@ const SignIn: React.SFC<SignInProps> = (props) => {
                 placeholder={control.config.placeholder}
             ></TextField>)
     })
+
+    const onSubmit = () => {
+        
+    }
     return (
         <div className={classes.SignIn}>
             {form}
+            <Button onClick={}></Button>
         </div>
     );
 };

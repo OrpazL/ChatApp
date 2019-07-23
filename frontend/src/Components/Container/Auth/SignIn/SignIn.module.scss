@@ -6,9 +6,25 @@
     flex-direction: column;
     padding       : 1rem;
 
-    .TextField{
+    .TextField {
+        margin: .5rem;
 
-        color: $white !important;
+        & label {
+            color: $white;
+        }
+
+        & fieldset {
+            border-color: darken($white, 50%);
+
+            &:hover {
+                border-color: darken($white, 10%);
+            }
+        }
+
+        & input::placeholder {
+            color: $white;
+
+        }
     }
 
     .Invalid {}
