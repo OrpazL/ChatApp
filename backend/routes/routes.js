@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const BASE_URL = '';
+const BASE_URL = 'api';
 
 
 // IMPORT ROUTES
