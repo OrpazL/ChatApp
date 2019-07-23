@@ -11,7 +11,7 @@ groupsRoutes(`${BASE_URL}/groups`, router);
 const authRoutes = require('./auth/auth.routes');
 authRoutes(`${BASE_URL}/auth`, router);
 
-router.get('/', (req, res) => {
+router.get(`${BASE_URL}/`, (req, res) => {
     res.send(req.session)
 });
 
