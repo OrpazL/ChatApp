@@ -1,13 +1,17 @@
 import { EAuthAction } from '../Reducers/Auth.reducer';
 import { IUser } from '../../Modals/Interfaces/User.interface';
+import { AuthHttp } from '../../Http/Interceptors/Auth.interceptor';
 
-export const setUser = (user: IUser) => ({
+const setUser = (user: IUser) => ({
     type: EAuthAction.SET_USER,
     payload: { user }
 })
 
 export const signInUser = (user: IUser) => {
     return (dispatch: Function) => {
-        dispatch(setUser(user));
+        AuthHttp.post('', user).then(resPost => {
+            const user = resPost.data;
+            dispatch(setUser(user));
+        });
     }
 }

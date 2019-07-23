@@ -7,6 +7,7 @@ import thunk from 'redux-thunk'
 import { Provider } from 'react-redux';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
+import { authReducer, IAuthReducer } from './Store/Reducers/Auth.reducer';
 
 // ReactDOM.render(<App />, document.getElementById('root'));
 
@@ -17,7 +18,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 
 export interface IReducers {
-
+    AuthReducer: IAuthReducer;
 }
 
 const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || redux.compose;
@@ -33,7 +34,7 @@ const logger: any = (store: IReducers) => {
 };
 
 const reducer: redux.Reducer<IReducers> = redux.combineReducers(({
-    
+    AuthReducer: authReducer
 }))
 const store = redux.createStore(reducer, composeEnhancers(redux.applyMiddleware(logger, thunk)))
 

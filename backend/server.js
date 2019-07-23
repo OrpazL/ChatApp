@@ -9,22 +9,20 @@ const app = express();
 // ROUTES IMPORT
 const routes = require('./routes/routes');
 
-
-app.use(cors({
-    origin: ['*'],
-    credentials: true // enable set cookie
-}));
+app.use(cors());
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(session({
+app.use(
+  session({
     secret: 'chat app',
     resave: false,
     saveUninitialized: true,
     cookie: {
-        secure: false,
-        expires: 600000
+      secure: false,
+      expires: 600000
     }
-}));
+  })
+);
 app.use(routes);
 
 app.use(history());
@@ -39,5 +37,5 @@ socketService(io);
 
 const PORT = process.env.PORT || 5000;
 http.listen(PORT, () => {
-    console.log(`Server is listening on port ${PORT}`);
+  console.log(`Server is listening on port ${PORT}`);
 });

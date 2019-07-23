@@ -4,12 +4,14 @@ import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { IReducers } from '../../../../index';
 import { withDialog } from '../../../UI/Dialog/WithDialog.component';
-import MaterialUIForm from 'react-material-ui-form'
-import { TextField,  Button } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
 import classes from './SignIn.module.scss';
 import { FormControl } from '../../../../Modals/Interfaces/Form.interface';
 import { setFormControl, setConfig } from '../../../Form/Form';
 import { EnumInputType } from '../../../../Modals/Enums/Form.enum';
+import { AuthHttp } from '../../../../Http/Interceptors/Auth.interceptor';
+import { signInUser } from '../../../../Store/Actions/Auth.action';
+import { IUser } from '../../../../Modals/Interfaces/User.interface';
 
 interface SignInProps extends IMapDispatch, IMapState, RouteComponentProps {
 }
@@ -19,10 +21,6 @@ interface SignInState {
     // tempData: ITempData
 }
 
-interface ITempData {
-    username: string,
-    password: string
-}
 
 interface ISignInForm {
     username: FormControl<string>,
@@ -34,18 +32,14 @@ const PASSWORD = 'Password'
 
 const SignIn: React.SFC<SignInProps> = (props) => {
     React.useEffect(() => {
-        const x = {
-            y: 55
-        }
-        console.table(x)
 
     }, [])
 
     const onChange = (e: any) => {
         const value = e.target.value;
-        const name = e.target.name;
+        const name: keyof ISignInForm = e.target.name.toLowerCase();
         const temp = { ...state }
-        temp.form[name as keyof ISignInForm].value = value;
+        temp.form[name].value = value;
         setState(temp);
     }
 
@@ -75,31 +69,38 @@ const SignIn: React.SFC<SignInProps> = (props) => {
             ></TextField>)
     })
 
-    const onSubmit = () => {
-        
+    const onSubmit = async () => {
+        const user = {
+            username: state.form.username.value,
+            password: state.form.password.value
+        }
+        props.signInUser(user);
+
     }
     return (
         <div className={classes.SignIn}>
+            <span>{JSON.stringify(props.currentUser)}</span>
             {form}
-            <Button onClick={}></Button>
+            <Button className={classes.Button} onClick={onSubmit}>Sign In</Button>
         </div>
     );
 };
 
 interface IMapState {
-
+    currentUser: IUser | null
 }
 
 const mapStateToProps = (state: IReducers): IMapState => (
     {
-
+        currentUser: state.AuthReducer.currentUser
     }
 )
 interface IMapDispatch {
+    signInUser: Function;
 
 }
 const mapDispatchToProps = (dispatch: React.Dispatch<any>): IMapDispatch => ({
-
+    signInUser: (user: any) => dispatch(signInUser(user))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(withDialog(SignIn)));

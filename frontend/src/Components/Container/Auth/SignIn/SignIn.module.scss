@@ -23,9 +23,16 @@
 
         & input::placeholder {
             color: $white;
-
         }
     }
 
-    .Invalid {}
+    .Button {
+        margin : 1rem;
+        padding: 1rem;
+        color  : $white;
+    }
+
+    .Invalid {
+        background-color: salmon
+    }
 }
