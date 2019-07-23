@@ -1,0 +1,24 @@
+@import '../../UI//Scss/variables.scss';
+
+.Toolbar {
+    background-color: $navBarColor;
+    position        : fixed;
+    width           : 98%;
+    height          : inherit;
+    max-height      : $navHeight;
+    color           : $white;
+    box-shadow      : 0 4px 1rem 0 #57575707;
+    display         : flex;
+    justify-content : space-between;
+    padding         : 0 1rem;
+
+    .ButtonContainer {
+        display: flex;
+
+
+        .Button {
+            text-transform: capitalize;
+            color         : $white;
+        }
+    }
+}

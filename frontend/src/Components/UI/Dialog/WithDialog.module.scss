@@ -1,0 +1,13 @@
+@import './../Scss/variables.scss';
+
+.Dialog {
+    display         : flex;
+    flex-direction  : column;
+    justify-content : center;
+    align-content   : center;
+    height          : 30rem;
+    width           : 50rem;
+    background-color: $navBarColor;
+    border-radius   : $borderRadius;
+    box-shadow      : 0 4px 1rem 0 rgba(0, 0, 0, 0.301);
+}
