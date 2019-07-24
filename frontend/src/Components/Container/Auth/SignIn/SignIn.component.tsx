@@ -9,7 +9,6 @@ import classes from './SignIn.module.scss';
 import { FormControl } from '../../../../Modals/Interfaces/Form.interface';
 import { setFormControl, setConfig } from '../../../Form/Form';
 import { EnumInputType } from '../../../../Modals/Enums/Form.enum';
-import { AuthHttp } from '../../../../Http/Interceptors/Auth.interceptor';
 import { signInUser } from '../../../../Store/Actions/Auth.action';
 import { IUser } from '../../../../Modals/Interfaces/User.interface';
 
