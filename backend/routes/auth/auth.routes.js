@@ -34,7 +34,7 @@ function authRoutes(BASE_URL, router) {
         const user = req.body;
         const result = await authService.signup(user);
         if (result.error) {
-            res.status(403).send(result.error).end();
+            res.status(403).end(result.error);
             return;
         }
         res.status(201).send(result);

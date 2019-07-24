@@ -10,8 +10,12 @@ const setUser = (user: IUser) => ({
 export const signInUser = (user: IUser) => {
     return (dispatch: Function) => {
         AuthHttp.post('', user).then(resPost => {
+            console.log(resPost);
+
             const user = resPost.data;
             dispatch(setUser(user));
+        }).catch(err => {
+            console.log(err);
         });
     }
 }

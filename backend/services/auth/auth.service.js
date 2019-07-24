@@ -8,7 +8,7 @@ module.exports = {
 
 async function login({ username, password }) {
     const user = (await usersService.query({ username }))[0];
-    if (user.password === password) return { user };
+    if (user && user.password === password) return { user };
     return { error: `Wrong password` };
 }
 
