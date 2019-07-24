@@ -23,7 +23,7 @@ const ToolbarComponent: React.SFC<ToolbarProps> = (props) => {
             </IconButton>
             <div className={classes.ButtonContainer}>
                 <NavLink to={ERoutesPath.signIn}><Button className={classes.Button}>Sign In</Button></NavLink>
-
+                <NavLink to={ERoutesPath.signUp}><Button className={classes.Button}>Sign Up</Button></NavLink>
             </div>
         </Toolbar>
     );
